@@ -1,5 +1,7 @@
 package com.franklin.mars.domain;
 
+import org.omg.CORBA.PUBLIC_MEMBER;
+
 /**
  * 结果模板
  *
@@ -11,6 +13,7 @@ public final class Result<T> {
 
     private static final String ERROR_CDOE = "409";
     private static final String SUCCESS_MSG = "successful";
+    private static final String EXCEPTION_CODE = "555";
     private String code;
     private String msg;
     private T data;
@@ -32,6 +35,10 @@ public final class Result<T> {
 
     public static <T> Result<T> setError(String msg, T data) {
         return new Result<>(ERROR_CDOE, msg, data);
+    }
+
+    public static <T> Result<T> setException(String msg,T data){
+        return new Result<>(EXCEPTION_CODE,msg,data);
     }
 
     public String getCode() {

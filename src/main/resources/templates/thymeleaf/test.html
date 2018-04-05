@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+
+<div>
+    用户姓名 <input type="text" th:id="${user.name}" th:name="${user.name}" th:value="${user.name}"/><br/>
+    用户年龄 <input type="text" th:value="${user.age}"/><br/>
+    用户生日 <input type="text" th:value="${#dates.format(user.birthday,'yyyy-MM-dd')}"/><br/>
+</div>
+
+<!--或者-->
+<div th:object="${user}">
+    用户姓名 <input type="text" th:id="*{name}" th:name="*{name}" th:value="*{name}"/><br/>
+    用户年龄 <input type="text" th:value="*{age}"/><br/>
+    用户生日 <input type="text" th:value="*{#dates.format(birthday,'yyyy-MM-dd')}"/><br/>
+</div>
+
+<span th:text="${user.desc}"></span><br/>
+<span th:utext="${user.desc}"></span><br/>
+
+URL:<a th:href="@{index.html}">点击</a><br/>
+</body>
+</html>
