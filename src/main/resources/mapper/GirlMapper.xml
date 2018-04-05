@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.franklin.mars.dao.GirlDao">
+
+    <resultMap id="BaseResultMap" type="com.franklin.mars.domain.Girl">
+        <result column="id" property="id"/>
+        <result column="cup_size" property="cupSize"/>
+        <result column="age" property="age"/>
+    </resultMap>
+    <parameterMap id="Girl" type="com.franklin.mars.domain.Girl"/>
+    <sql id="Base_Column_List">
+        id,age,cup_size
+    </sql>
+
+    <select id="findById" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from girl
+        where id=#{id}
+    </select>
+
+    <select id="findAllGirl" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from girl
+
+    </select>
+    <select id="findGirls" resultMap="BaseResultMap" parameterMap="Girl">
+        select
+        <include refid="Base_Column_List"/>
+        from girl
+        where
+        1=1
+        <if test="id!=0 and id!=null">
+            and id=#{id}
+        </if>
+        <if test="age!=0 and age!=null">
+            and age=#{age}
+        </if>
+        <if test="cupSize!=null and cupSize!=''">
+            and cup_size = #{cupSize},
+        </if>
+
+    </select>
+
+
+    <insert id="saveGirl" parameterMap="Girl" useGeneratedKeys="true" keyProperty="id">
+        insert into
+        girl(id,age,cup_size)
+        values
+        (#{id},#{age},#{cupSize})
+    </insert>
+
+
+    <update id="updateGirl" parameterMap="Girl">
+        update
+        girl
+        set
+        <if test="cupSize!=null and cupSize!=''">
+            cup_size = #{cupSize},
+        </if>
+        <if test="age!=null and age!=0">
+            age = #{age}
+        </if>
+        where
+        id = #{id}
+    </update>
+
+    <delete id="deleteGirl" parameterType="java.lang.Integer">
+        delete
+        from
+        girl
+        where
+        id = #{id}
+    </delete>
+</mapper>
