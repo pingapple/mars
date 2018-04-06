@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game</title>
+    <style>
+        canvas {
+            border: 1px black solid;
+        }
+    </style>
+</head>
+<body>
+<canvas id="my-canvas" width="1980" height="1080"></canvas>
+<script>
+    var log = console.log.bind(console);
+    var canvas = document.querySelector('#my-canvas');
+    var context = canvas.getContext('2d');
+
+    var img = new Image();
+    var x = 100, y = 100;
+    img.src = 'fox.jpg';
+    img.onload = function (ev) {
+        context.drawImage(img, x, y);
+    };
+
+    window.addEventListener('keydown', function (ev) {
+        var key = ev.key;
+        if (key === 'a') {
+
+        } else if (key === 'z') {
+
+        }
+    });
+</script>
+</body>
+</html>
