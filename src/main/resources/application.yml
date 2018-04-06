@@ -7,6 +7,11 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/dbgirl?useSSL=false&characterEncoding=utf8
     username: root
     password: chenhao
+    type: com.alibaba.druid.pool.DruidDataSource
+
+
+
+#    druid配置
 #    devtools 热部署设置
   devtools:
     restart:
@@ -38,3 +43,4 @@ pagehelper:
 server:
   session:
     timeout: 30
+
